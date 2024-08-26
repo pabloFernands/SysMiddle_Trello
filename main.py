@@ -30,7 +30,7 @@ def get_trello_cards(list_id):
     return response.json()
 
 
-# Função para criar um projeto no Asana
+
 def create_asana_project(project_name):
     url = "https://app.asana.com/api/1.0/projects"
     headers = {
