@@ -11,12 +11,6 @@ ASANA_TOKEN = f"Bearer {os.getenv('ASANA_TOKEN')}"
 ASANA_WORKSPACE_ID = os.getenv('ASANA_WORKSPACE_ID')
 
 
-def get_trello_board_name(board_id):
-    url = f"https://api.trello.com/1/boards/{board_id}"
-    query = {'key': TRELLO_API_KEY, 'token': TRELLO_TOKEN}
-    response = requests.get(url, params=query)
-    return response.json()['name']
-
 def get_trello_lists(board_id):
     url = f"https://api.trello.com/1/boards/{board_id}/lists"
     query = {'key': TRELLO_API_KEY, 'token': TRELLO_TOKEN}
@@ -28,8 +22,6 @@ def get_trello_cards(list_id):
     query = {'key': TRELLO_API_KEY, 'token': TRELLO_TOKEN}
     response = requests.get(url, params=query)
     return response.json()
-
-
 
 def create_asana_project(project_name):
     url = "https://app.asana.com/api/1.0/projects"
@@ -61,7 +53,6 @@ def create_asana_task(project_id, task_name, task_notes):
     }
     response = requests.post(url, headers=headers, json=data)
     return response.json()
-
 
 def copy_trello_to_asana(trello_board_id, asana_project_name):
     asana_project = create_asana_project(asana_project_name)
